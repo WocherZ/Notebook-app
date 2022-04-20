@@ -42,3 +42,7 @@ test-journal
 .mypy_cache/
 .component-names.json
 .local-names.json
+.idea
+__pycache__
+local_settings.py
+
