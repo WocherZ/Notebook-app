@@ -4,7 +4,7 @@ from .models import Note
 
 # Register your models here.
 class NoteAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("name",)}
 
 
 admin.site.register(Note, NoteAdmin)

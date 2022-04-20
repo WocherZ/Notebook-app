@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 
 
@@ -11,4 +12,17 @@ class Note(models.Model):
     date_published = models.DateTimeField(verbose_name="Дата публикации",
                                           auto_now=True,
                                           null=False)
+    slug = models.SlugField(verbose_name="Уникальная ссылка",
+                            max_length=148,
+                            unique=True)
 
+
+    def get_absolute_url(self):
+        return reverse('note', kwargs={'note_slug': self.slug})
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Заметка"
+        verbose_name_plural = "Список заметок"
