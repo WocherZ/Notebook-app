@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -10,7 +11,7 @@ class Note(models.Model):
     text = models.TextField(verbose_name="Текст заметки",
                             null=False)
     date_published = models.DateTimeField(verbose_name="Дата публикации",
-                                          auto_now=True,
+                                          default=timezone.now,
                                           null=False)
     slug = models.SlugField(verbose_name="Уникальная ссылка",
                             max_length=148,

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import UpdateView
 
 from .models import Note
 
@@ -24,6 +25,12 @@ def note(request, note_slug):
     context['name'] = note_object.name
     context['text'] = note_object.text
     context['date'] = note_object.date_published
+    context['link_update'] = "/note/" + str(note_slug) + "/update/"
     return render(request, "note.html", context=context)
 
+
+class UpdateNote(UpdateView):
+    model = Note
+    template_name = "update_note.html"
+    fields = ['name', 'text', 'date_published']
 
