@@ -12,4 +12,13 @@
 
 {% block content %}
   <h1>Note list page</h1>
+  <ul>
+    {% for note in notes %}
+      <li>
+        <a href="{% url 'note' note.slug %}">{{ note.name }}</a>
+        <p>{{ note.date }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
 {% endblock %}

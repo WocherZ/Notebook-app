@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-  <title>Заметка</title>
+  <title>Notepad {{ name }}</title>
 {% endblock %}
 
 {% block files %}
@@ -12,4 +12,7 @@
 
 {% block content %}
   <h1>Note page</h1>
+  <h3>{{ name }}</h3>
+  <p>{{ date }}</p>
+  <p>{{ text }}</p>
 {% endblock %}
