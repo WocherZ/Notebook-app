@@ -2,6 +2,8 @@ from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 
+from .slug import unique_slugify
+
 
 # Create your models here.
 class Note(models.Model):
@@ -23,6 +25,11 @@ class Note(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, **kwargs):
+        slug = '%s' % (self.name)
+        unique_slugify(self, slug)
+        super(Note, self).save()
 
     class Meta:
         verbose_name = "Заметка"

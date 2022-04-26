@@ -8,5 +8,6 @@ urlpatterns = [
     path('note/<slug:note_slug>/', views.note, name='note'),
     path('note/<slug:slug>/update/', views.UpdateNote.as_view(), name='update_note'),
     path('note/<slug:slug>/delete/', views.DeleteNote.as_view(), name='delete_note'),
+    path('create_note', views.create_note, name='create_note'),
 
 ]

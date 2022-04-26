@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import UpdateView, DeleteView
 
-from .models import Note
+from .forms import *
 
 
 def home(request):
@@ -28,6 +28,29 @@ def note(request, note_slug):
     context['link_update'] = "/note/" + str(note_slug) + "/update/"
     context['link_delete'] = "/note/" + str(note_slug) + "/delete/"
     return render(request, "note.html", context=context)
+
+
+def create_note(request):
+    context = {}
+
+    error = ''
+    if request.method == "POST":
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            context['form'] = form
+            context['error'] = "Заметка успешно создана"
+            return redirect('notes_list')
+            # return render(request, "create_note.html", context=context)
+        else:
+            error = "Не удалось создать заметку"
+
+    form = NoteForm()
+    context['form'] = form
+    context['error'] = error
+
+    return render(request, "create_note.html", context=context)
 
 
 class UpdateNote(UpdateView):
