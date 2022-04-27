@@ -1,4 +1,7 @@
 # Notebook-app
-Notebook app project
 
-Backend: Django
+Приложение "Заметки" 
+
+- Backend: Django
+ 
+- Frontend: HTML Templates
